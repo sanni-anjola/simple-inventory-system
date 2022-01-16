@@ -23,7 +23,7 @@ public class InventoryController {
         return ResponseEntity.ok().body("hello world");
     }
 
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<?> viewAll(){
         return ResponseEntity.ok().body(inventoryService.getAllInventories());
     }
