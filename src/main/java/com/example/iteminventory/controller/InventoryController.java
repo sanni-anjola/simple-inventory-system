@@ -9,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("api/v1/")
@@ -48,5 +50,14 @@ public class InventoryController {
     public ResponseEntity<?> deleteItem(@PathVariable String productName){
         inventoryService.deleteItem(productName);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/downloadCsv")
+    public ResponseEntity<?> writeToFile(){
+        try {
+            inventoryService.writeToCsv();
+        }catch (IOException ex){
+            return ResponseEntity.badRequest().body("Error processing request");
+        }
     }
 }
