@@ -56,6 +56,7 @@ public class InventoryController {
     public ResponseEntity<?> writeToFile(){
         try {
             inventoryService.writeToCsv();
+            return ResponseEntity.ok().body("File download successful, check inventory.csv in the program directory");
         }catch (IOException ex){
             return ResponseEntity.badRequest().body("Error processing request");
         }
