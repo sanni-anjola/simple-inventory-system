@@ -13,7 +13,7 @@ import java.io.IOException;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("api/v1/")
+@RequestMapping("api/v1")
 public class InventoryController {
     private final InventoryService inventoryService;
     private final InventoryItemService inventoryItemService;
@@ -46,7 +46,7 @@ public class InventoryController {
             return ResponseEntity.badRequest().body(ex.getLocalizedMessage());
         }
     }
-    @DeleteMapping("{productName}")
+    @DeleteMapping("/{productName}")
     public ResponseEntity<?> deleteItem(@PathVariable String productName){
         inventoryService.deleteItem(productName);
         return ResponseEntity.noContent().build();
