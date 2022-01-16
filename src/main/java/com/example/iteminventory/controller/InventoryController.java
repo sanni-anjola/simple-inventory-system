@@ -18,7 +18,12 @@ public class InventoryController {
     private final InventoryService inventoryService;
     private final InventoryItemService inventoryItemService;
 
-    @GetMapping
+    @GetMapping("/hello")
+    public ResponseEntity<String> hello(){
+        return ResponseEntity.ok().body("hello world");
+    }
+
+    @GetMapping("/")
     public ResponseEntity<?> viewAll(){
         return ResponseEntity.ok().body(inventoryService.getAllInventories());
     }
