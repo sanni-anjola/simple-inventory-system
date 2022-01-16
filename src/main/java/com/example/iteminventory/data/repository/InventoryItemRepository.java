@@ -9,6 +9,7 @@ import java.util.List;
 
 public interface InventoryItemRepository extends JpaRepository<InventoryItem, Long> {
     List<InventoryItem> findBySlug(String slug);
+
     @Query("select max(inv.quantity) from InventoryItem inv where inv.slug = ?1")
     int getMax(String slug);
     @Query("select min(inv.quantity) from InventoryItem inv where inv.slug = ?1")

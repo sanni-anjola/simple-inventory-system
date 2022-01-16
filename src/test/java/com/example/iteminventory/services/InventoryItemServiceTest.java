@@ -27,11 +27,11 @@ class InventoryItemServiceTest {
     @Autowired
     private InventoryRepository inventoryRepository;
 
-//    @AfterEach
-//    void tearDown() {
-//        inventoryItemRepository.deleteAll();
-//        inventoryRepository.deleteAll();
-//    }
+    @AfterEach
+    void tearDown() {
+        inventoryItemRepository.deleteAll();
+        inventoryRepository.deleteAll();
+    }
 
     @Test
     @DisplayName("Test that Item can be saved")

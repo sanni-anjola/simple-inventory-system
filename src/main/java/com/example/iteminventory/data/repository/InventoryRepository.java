@@ -9,4 +9,5 @@ import java.util.List;
 
 public interface InventoryRepository extends JpaRepository<Inventory, Long> {
     Inventory findBySlug(String slug);
+    void deleteBySlug(String slug);
 }

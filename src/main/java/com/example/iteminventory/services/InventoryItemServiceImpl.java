@@ -13,16 +13,17 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Slf4j
 @RequiredArgsConstructor
 @Service
+@Transactional
 public class InventoryItemServiceImpl implements InventoryItemService{
 
     private final InventoryItemRepository inventoryItemRepository;
     private final InventoryRepository inventoryRepository;
     @Override
-    @Transactional
     public InventoryItem addItem(InventoryItemRequest inventoryItemRequest) {
         String slug = inventoryItemRequest.getProductName().replace(" ", "_").toLowerCase();
 
@@ -68,6 +69,11 @@ public class InventoryItemServiceImpl implements InventoryItemService{
         inventoryItem.setOperation(Operation.REMOVE);
         inventoryItemRepository.save(inventoryItem);
         return inventoryItem;
+    }
+
+    @Override
+    public List<InventoryItem> getAll() {
+        return inventoryItemRepository.findAll();
     }
 
 
